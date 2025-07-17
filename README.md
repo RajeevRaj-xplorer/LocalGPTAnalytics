@@ -1,13 +1,11 @@
-# WhatsAppManager GPTAnalytics
+# GPTAnalytics
 
-A Windows desktop application for interacting with WhatsApp contacts and groups using an NLP-based chatbot. Built with Electron and React, and integrates with the WhatsApp MCP server.
+A Sample Windows desktop application for interacting a local LLM. Built with Electron and React. Built with Cursor to try the functionalities. 
 
 ## Features (Framework)
 - Electron-based desktop app
 - React UI with Material-UI
-- Left pane for listing contacts/groups (to be fetched from MCP server)
-- Ability to select, delete, and pin contacts/groups (UI only for now)
-- Main chat area for NLP bot interaction (placeholder)
+- Main chat area to interact with a local LLM-LLama3
 
 ## Getting Started
 
@@ -15,12 +13,8 @@ A Windows desktop application for interacting with WhatsApp contacts and groups 
    ```
 npm install
    ```
-2. Start the app:
+2. Start the app-Use 2 terminals:
    ```
 npm run start
    ```
-
-## Next Steps
-- Integrate with WhatsApp MCP server for real contact/group listing
-- Implement chat and NLP bot logic
-- Add persistent pin/delete/select features
+npm run electron
