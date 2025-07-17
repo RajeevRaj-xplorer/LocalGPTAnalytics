@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\rajee\\Documents",
+        "C:\\Users\\rajee\\Downloads"
+      ]
+    },
+     "kite": {
+            "command": "npx",
+            "args": ["mcp-remote", "https://mcp.kite.trade/sse"]
+     },
+      
+      "whatsapp": {
+      "command": "C:\\Users\\rajee\\.local\\bin\\uv.exe", 
+      "args": [
+        "--directory",
+        "C:\\Users\\rajee\\Documents\\Projects\\whatsapp-mcp\\whatsapp-mcp-server", 
+        "run",
+        "main.py"
+      ]
+    }
+
+  }
+}
