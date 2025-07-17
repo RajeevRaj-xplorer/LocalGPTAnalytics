@@ -1,6 +1,6 @@
 # GPTAnalytics
 
-A Windows desktop application for interacting with a local Llama LLM using a modern chat interface. Built with Electron and React, featuring live streaming of LLM responses and a clean Material-UI design.
+A Windows desktop application for interacting with a local Llama LLM using a modern chat interface. Built with Electron and React, featuring live streaming of LLM responses and a clean Material-UI design. This has been built completely with Cursor AI as an experiment to create an app from scratch with Cursor. 
 
 ## Features
 - Electron-based desktop app (cross-platform, tested on Windows)
