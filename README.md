@@ -6,6 +6,7 @@ A Windows desktop application for interacting with a local Llama LLM using a mod
 - Electron-based desktop app (cross-platform, tested on Windows)
 - React UI with Material-UI components
 - Main chat area for interacting with a local Llama LLM (Ollama)
+- Updated to chose which Ollama models are available and let the user choose the model to use
 - Live/partial streaming of LLM responses in the chat window
 - Easy-to-use, modern interface
 

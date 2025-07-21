@@ -5,16 +5,29 @@ import { Box, Tabs, Tab } from '@mui/material';
 
 function App() {
   const [analyticsMessages, setAnalyticsMessages] = useState([]);
+  const [ollamaModels, setOllamaModels] = useState([]);
+  const [selectedModel, setSelectedModel] = useState('llama3');
 
+  // Fetch available Ollama models on mount
   useEffect(() => {
-    if (!window.electronAPI) return;
-    const handler = (msg) => {
-      setAnalyticsMessages((prev) => [...prev, { sender: 'bot', text: msg, timestamp: new Date() }]);
-    };
-    window.electronAPI.onMCPResponse(handler);
-    return () => {
-      // No off method, so no cleanup
-    };
+    async function fetchModels() {
+      try {
+        const res = await fetch('http://localhost:11434/api/tags');
+        const data = await res.json();
+        if (data.models && data.models.length > 0) {
+          setOllamaModels(data.models.map(m => m.name));
+          // Default to llama3 if available, else first model
+          if (data.models.some(m => m.name === 'llama3')) {
+            setSelectedModel('llama3');
+          } else {
+            setSelectedModel(data.models[0].name);
+          }
+        }
+      } catch (e) {
+        setOllamaModels([]);
+      }
+    }
+    fetchModels();
   }, []);
 
   const handleSendAnalyticsMessage = async (msg) => {
@@ -29,7 +42,7 @@ function App() {
         const response = await fetch('http://localhost:11434/api/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model: 'llama3', prompt: msg }),
+          body: JSON.stringify({ model: selectedModel, prompt: msg }),
         });
         if (!response.ok) {
           throw new Error('LLM server error: ' + response.statusText);
@@ -91,6 +104,9 @@ function App() {
           messages={analyticsMessages}
           onSendMessage={handleSendAnalyticsMessage}
           analyticsMode={true}
+          ollamaModels={ollamaModels}
+          selectedModel={selectedModel}
+          setSelectedModel={setSelectedModel}
         />
       </Box>
     </Box>

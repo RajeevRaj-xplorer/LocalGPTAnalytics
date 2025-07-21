@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, Paper } from '@mui/material';
+import { Box, Typography, TextField, Button, Paper, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
 
-function ChatArea({ contact, messages, onSendMessage, analyticsMode }) {
+function ChatArea({ contact, messages, onSendMessage, analyticsMode, ollamaModels = [], selectedModel, setSelectedModel }) {
   const [message, setMessage] = useState('');
 
   const handleInputChange = (e) => {
@@ -13,6 +13,10 @@ function ChatArea({ contact, messages, onSendMessage, analyticsMode }) {
       onSendMessage(message);
       setMessage('');
     }
+  };
+
+  const handleModelChange = (e) => {
+    setSelectedModel(e.target.value);
   };
 
   return (
@@ -46,6 +50,20 @@ function ChatArea({ contact, messages, onSendMessage, analyticsMode }) {
           )}
         </Box>
       </Box>
+      <FormControl sx={{ mb: 2, minWidth: 200 }} disabled={ollamaModels.length === 0}>
+        <InputLabel id="model-select-label">Ollama Model</InputLabel>
+        <Select
+          labelId="model-select-label"
+          id="model-select"
+          value={selectedModel || ''}
+          label="Ollama Model"
+          onChange={handleModelChange}
+        >
+          {ollamaModels.map((model) => (
+            <MenuItem key={model} value={model}>{model}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <Paper sx={{ p: 2, display: 'flex', alignItems: 'center' }} elevation={3}>
         <TextField
           fullWidth
